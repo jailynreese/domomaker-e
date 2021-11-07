@@ -32,19 +32,6 @@ const makeDomo = (req, res) => {
   return domoPromise;
 };
 
-// const updateAge = (req, res) => {
-//   Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
-//     let newAge = docs.age + 1;
-//     const savePromise = docs.save();
-
-//savePromise.then(() => res.json({ name: docs.name, age: newAge, owner: req.session.account._id, snack: docs.snack }));
-
-//     savePromise.catch(() => res.status(500).json({ err }));
-
-//     return newAge;
-//   });
-// };
-
 const makerPage = (req, res) => {
   Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
     if (err) {
