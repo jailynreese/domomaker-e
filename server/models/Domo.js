@@ -9,6 +9,7 @@ let DomoModel = {};
 // converts string ID to real mongo ID
 const convertId = mongoose.Types.ObjectId;
 const setName = (name) => _.escape(name).trim();
+const setSnack = (snack) => _.escape(snack).trim();
 
 const DomoSchema = new mongoose.Schema({
   name: {
