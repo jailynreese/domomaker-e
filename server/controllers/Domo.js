@@ -37,7 +37,7 @@ const updateAge = (req, res) => {
     let newAge = docs.age + 1;
     const savePromise = docs.save();
 
-    savePromise.then(() => res.json({ name: docs.name, age: newAge, snack: docs.snack }));
+    savePromise.then(() => res.json({ name: docs.name, age: newAge, owner: req.session.account._id, snack: docs.snack }));
 
     savePromise.catch(() => res.status(500).json({ err }));
     
