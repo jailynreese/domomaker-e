@@ -67,7 +67,7 @@ const DomoList = function(props) {
     );
 };
 
-const updateAge = (age) => {
+const updateAge = (e, age) => {
     e.preventDefault();
 
     sendAjax('POST', '/updateAge', null, (age) => {
