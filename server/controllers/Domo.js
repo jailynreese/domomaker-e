@@ -37,10 +37,10 @@ const makeDomo = (req, res) => {
 //     let newAge = docs.age + 1;
 //     const savePromise = docs.save();
 
-//     savePromise.then(() => res.json({ name: docs.name, age: newAge, owner: req.session.account._id, snack: docs.snack }));
+//savePromise.then(() => res.json({ name: docs.name, age: newAge, owner: req.session.account._id, snack: docs.snack }));
 
 //     savePromise.catch(() => res.status(500).json({ err }));
-    
+
 //     return newAge;
 //   });
 // };
@@ -73,11 +73,15 @@ const getDomo = (request, response) => {
   const req = request;
   const res = response;
 
-  return Domo.DomoModel.findDomo(req.session.account._id, req.session.account.name, req.session.account.age, (err, docs) => {
-    if (err) {
-      console.log(err);
-      return res.status(400).json({ error: 'An error occurred' });
-    }
+  return Domo.DomoModel.findDomo(
+    req.session.account._id, 
+    req.session.account.name, 
+    req.session.account.age, 
+    (err, docs) => {
+      if (err) {
+        console.log(err);
+        return res.status(400).json({ error: 'An error occurred' });
+      }
 
     return res.json({ domos: docs });
   });
