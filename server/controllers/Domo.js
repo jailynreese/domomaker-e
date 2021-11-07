@@ -32,18 +32,18 @@ const makeDomo = (req, res) => {
   return domoPromise;
 };
 
-const updateAge = (req, res) => {
-  Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
-    let newAge = docs.age + 1;
-    const savePromise = docs.save();
+// const updateAge = (req, res) => {
+//   Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
+//     let newAge = docs.age + 1;
+//     const savePromise = docs.save();
 
-    savePromise.then(() => res.json({ name: docs.name, age: newAge, owner: req.session.account._id, snack: docs.snack }));
+//     savePromise.then(() => res.json({ name: docs.name, age: newAge, owner: req.session.account._id, snack: docs.snack }));
 
-    savePromise.catch(() => res.status(500).json({ err }));
+//     savePromise.catch(() => res.status(500).json({ err }));
     
-    return newAge;
-  });
-};
+//     return newAge;
+//   });
+// };
 
 const makerPage = (req, res) => {
   Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
@@ -69,7 +69,22 @@ const getDomos = (request, response) => {
   });
 };
 
+const getDomo = (request, response) => {
+  const req = request;
+  const res = response;
+
+  return Domo.DomoModel.findDomo(req.session.account._id, req.session.account.name, req.session.account.age, (err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: 'An error occurred' });
+    }
+
+    return res.json({ domos: docs });
+  });
+};
+
 module.exports.makerPage = makerPage;
 module.exports.getDomos = getDomos;
+module.exports.getDomo = getDomo;
 module.exports.make = makeDomo;
 module.exports.updateAge = updateAge;

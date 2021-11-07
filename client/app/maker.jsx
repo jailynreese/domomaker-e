@@ -50,7 +50,7 @@ const DomoList = function(props) {
             <div 
                 key={domo._id} 
                 className="domo"
-                onClick={updateAge(domo.age)}
+                // onClick={updateAge}
             >
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
                 <h3 className="domoName">Name: {domo.name} </h3>
@@ -65,14 +65,6 @@ const DomoList = function(props) {
             {domoNodes}
         </div>
     );
-};
-
-const updateAge = (e, age) => {
-    e.preventDefault();
-
-    sendAjax('POST', '/updateAge', null, (age) => {
-        document.querySelector(".domoAge").innerHTML = age;
-    });
 };
 
 const loadDomosFromServer = () => {
