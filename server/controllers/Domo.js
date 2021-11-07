@@ -78,4 +78,3 @@ module.exports.makerPage = makerPage;
 module.exports.getDomos = getDomos;
 module.exports.getDomo = getDomo;
 module.exports.make = makeDomo;
-module.exports.updateAge = updateAge;
